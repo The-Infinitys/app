@@ -1,0 +1,96 @@
+<html>
+  <head>
+    <meta charset="utf8" />
+    <title>Camera</title>
+    <style>
+      canvas, video{
+        border: 1px solid gray;
+      }
+    </style>
+    <link rel="manifest" href="manifest.json" />
+    <script>
+      if ("serviceworker" in navigator) {
+        navigator.serviceworker
+          .register("./sw.js")
+          .then((registration) => {
+            console.log("Serviceworker registration successful.");
+          })
+          .catch((error) => {
+            console.error("Serviceworker registration failed.");
+          });
+      }
+    </script>
+    <body>
+      <video id="camera" width="1000" height="1000"></video>
+      <canvas id="picture" width="1000" height="1000"></canvas>
+      <form>
+        <button type="button" id="shutter"></button>
+      </form>
+      <style>
+        #camera{
+          position:fixed;
+          width:100%;
+          height: 100%;
+        }
+        #picture{
+          position:fixed;
+          width:20%;
+          height: 20%;
+          right:0;
+          bottom:0;
+        }
+        #shutter{
+          background-color: black;
+          border:2px solid white;
+          position:fixed;
+          width:10vh;
+          aspect-ratio: 1;
+          transform: translate(0,50%);
+          right:0;
+          bottom:50%;
+        }
+      </style>
+      <script>
+        window.onload = () => {
+          const video = document.querySelector("#camera");
+          const canvas = document.querySelector("#picture");
+          const se = document.querySelector("#se");
+
+          /** カメラ設定 */
+          const constraints = {
+            audio: false,
+            video: {
+              width: 300,
+              height: 200,
+              facingMode: { exact: "environment" }, // リアカメラを利用する場合
+            },
+          };
+
+          /**
+           * カメラを<video>と同期
+           */
+          navigator.mediaDevices
+            .getUserMedia(constraints)
+            .then((stream) => {
+              video.srcObject = stream;
+              video.onloadedmetadata = (e) => {
+                video.play();
+              };
+            })
+            .catch((err) => {
+              console.log(err.name + ": " + err.message);
+            });
+
+          /**
+           * シャッターボタン
+           */
+          document.querySelector("#shutter").addEventListener("click", () => {
+            const ctx = canvas.getContext("2d");
+            // canvasに画像を貼り付ける
+            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+          });
+        };
+      </script>
+    </body>
+  </head>
+</html>

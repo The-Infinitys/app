@@ -23,6 +23,7 @@
     <body>
       <video id="camera" width="1920px" height="1080px"></video>
       <canvas id="picture" width="1920px" height="1080px"></canvas>
+      <img id="photo" />
       <form>
         <button type="button" id="shutter"></button>
       </form>
@@ -30,10 +31,16 @@
         #camera{
           position:fixed;
         }
-        #camera{
-          position:fixed;
-        }
         #picture{
+          position:fixed;
+          width:20%;
+          height: 20%;
+          right:0;
+          bottom:0;
+          visibility: hidden;
+        }
+
+        #photo{
           position:fixed;
           width:20%;
           height: 20%;
@@ -56,6 +63,7 @@
           const video = document.querySelector("#camera");
           const canvas = document.querySelector("#picture");
           const se = document.querySelector("#se");
+          const img = document.querySelector("#photo");
           video.width=window.innerWidth;
           video.height=window.innerHeight;
           video.width=window.innerWidth;
@@ -92,6 +100,7 @@
             const ctx = canvas.getContext("2d");
             // canvasに画像を貼り付ける
             ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+            img.src=canvas.toDataURL()
           });
         };
       </script>

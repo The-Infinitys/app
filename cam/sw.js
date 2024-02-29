@@ -4,8 +4,7 @@ const CACHE_NAME = 'future-shell';
 const urlsToCache = [
   './',
   './index.html',
-  './icon.png',
-  './forPWA.json'
+  './manifest.json'
 ];
 
 self.addEventListener('install', (event) => {

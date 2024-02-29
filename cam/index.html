@@ -21,12 +21,17 @@
       }
     </script>
     <body>
-      <video id="camera" width="1000" height="1000"></video>
-      <canvas id="picture" width="1000" height="1000"></canvas>
+      <video id="camera" width="1920px" height="1080px"></video>
+      <canvas id="picture" width="1920px" height="1080px"></canvas>
       <form>
         <button type="button" id="shutter"></button>
       </form>
       <style>
+        #camera{
+          position:fixed;
+          width:100%;
+          height: 100%;
+        }
         #camera{
           position:fixed;
           width:100%;

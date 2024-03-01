@@ -66,14 +66,14 @@
           const img = document.querySelector("#photo");
           video.width=window.innerWidth;
           video.height=window.innerHeight;
-          video.width=window.innerWidth;
+          canvas.width=window.innerWidth;
           canvas.height=window.innerHeight;
           /** カメラ設定 */
           const constraints = {
             audio: false,
             video: {
-              width: 1920,
-              height: 1080,
+              width: window.innerWidth,
+              height: window.innerHeight,
               facingMode: { exact: "environment" }, // リアカメラを利用する場合
             },
           };

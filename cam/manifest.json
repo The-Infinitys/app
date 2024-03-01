@@ -1,6 +1,6 @@
 {
-  "name": "Camera",
-  "short_name": "Cam",
+  "name": "silent Camera",
+  "short_name": "sicam",
   "start_url": ".",
   "display": "standalone",
   "background_color": "#000",

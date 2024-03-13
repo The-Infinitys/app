@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Infinity Video Editor</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+
+  <body>
+    <div id="leftMenu">
+      <button class="left-buttons" id="cancel">↩︎</button>
+      <button class="left-buttons" id="redo">↪︎</button>
+      <button
+        class="left-buttons"
+        id="swapFullScreen"
+        onclick="swapFullScreen()">
+        <svg
+          style="width:100%;height:10vh;"
+          class="player-button-svg"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 100 100"
+          fill="#fff">
+          <polygon points="0 0, 10 0, 10 5, 5 5, 5 10, 0 10" />
+          <polygon points="100 0, 90 0, 90 5, 95 5, 95 10, 100 10" />
+          <polygon points="0 100, 10 100, 10 95, 5 95, 5 90, 0 90" />
+          <polygon points="100 100, 90 100, 90 95, 95 95, 95 90,100 90" />
+        </svg>
+      </button>
+      <button class="left-buttons" id="setting">setting</button>
+    </div>
+    <div id="screen">
+      <canvas id="video"></canvas>
+    </div>
+    <div id="playControler">
+      <button class="player-button" id="Skip">
+        <svg
+          class="player-button-svg"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 100 100"
+          fill="#fff">
+          <polygon points="100 0, 100 100, 40 50" />
+          <polygon points="50 0, 50 100, 0 50" />
+          <rect x="0" y="0" width="15" height="100" />
+        </svg>
+      </button>
+      <button class="player-button" id="Rewind">
+        <svg
+          class="player-button-svg"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 100 100"
+          fill="#fff">
+          <polygon points="100 0, 100 100, 40 50" />
+          <polygon points="50 0, 50 100, 0 50" />
+        </svg>
+      </button>
+      <button class="player-button" id="play-and-stop">
+        <svg
+          class="player-button-svg"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 100 100"
+          fill="#fff">
+          <polygon points="10 0, 10 100, 90 50" />
+        </svg>
+      </button>
+      <button class="player-button" id="Fast-Forward">
+        <svg
+          class="player-button-svg"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 100 100"
+          fill="#fff">
+          <polygon points="0 0, 0 100, 60 50" />
+          <polygon points="50 0, 50 100, 100 50" />
+        </svg>
+      </button>
+      <button class="player-button" id="Skip">
+        <svg
+          class="player-button-svg"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 100 100"
+          fill="#fff">
+          <polygon points="0 0, 0 100, 60 50" />
+          <polygon points="50 0, 50 100, 100 50" />
+          <rect x="85" y="0" width="15" height="100" />
+        </svg>
+      </button>
+    </div>
+
+    <div id="editor">
+      <div class="editor-menus" id="editor-menu-main">
+        <button
+          class="editor-menu"
+          id="editor-button-addElem"
+          onclick="menu_open_AddElement()">
+          +
+        </button>
+        <button class="editor-menu" id="editor-button-importProject">
+          import<br />project
+        </button>
+        <button
+          class="editor-menu"
+          id="editor-button-importFile"
+          onclick="importFile()">
+          import<br />file
+        </button>
+        <button class="editor-menu" id="editor-button-export">export</button>
+        <input
+          type="file"
+          accept=".infve, .zip"
+          class="hiddenDialog"
+          id="file-dialog-project" />
+        <input
+          type="file"
+          accept="audio/*, video/*, image/*"
+          class="hiddenDialog"
+          id="file-dialog-source"
+          multiple />
+      </div>
+      <div class="editor-menus" id="editor-menu-sub">
+        <div id="editor-menu-sub-top">
+          <button id="editor-back" onclick="backEditorMenu()">↩︎</button>
+          <h1 id="editor-subtitle">Null</h1>
+        </div>
+        <div id="editor-menu-sub-bottom">
+          <div class="editor-menus" id="editor-menu-addElem">
+            <button
+              class="editor-addElem-button"
+              id="editor-addElem-button-video">
+              video
+            </button>
+            <button
+              class="editor-addElem-button"
+              id="editor-addElem-button-image">
+              image
+            </button>
+            <button
+              class="editor-addElem-button"
+              id="editor-addElem-button-audio">
+              audio
+            </button>
+            <button
+              class="editor-addElem-button"
+              id="editor-addElem-button-text">
+              text
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <svg
+      id="guideline"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 100 1000"
+      fill="#fff">
+      <polygon points="0 0, 100 0, 50 100" />
+      <rect x="47.5" y="0" width="5" height="1000" />
+    </svg>
+    <div id="play-data-display">
+      <p id="current-time">0.00</p>
+    </div>
+    <div id="selector">
+      <div id="selector-start">
+        <div class="selector-start-layer" id="selector-start-layer1">
+          layer-1
+        </div>
+        <div class="selector-start-layer" id="selector-start-layer2">
+          layer-2
+        </div>
+        <div class="selector-start-layer" id="selector-start-layer3">
+          layer-3
+        </div>
+        <div class="selector-start-layer" id="selector-start-layer4">
+          layer-4
+        </div>
+        <div class="selector-start-layer" id="selector-start-layer5">
+          layer-5
+        </div>
+      </div>
+      <div id="selector-main">
+        <div class="selector-elems-layer" id="selector-elems-layer1"></div>
+        <div class="selector-elems-layer" id="selector-elems-layer2"></div>
+        <div class="selector-elems-layer" id="selector-elems-layer3"></div>
+        <div class="selector-elems-layer" id="selector-elems-layer4"></div>
+        <div class="selector-elems-layer" id="selector-elems-layer5"></div>
+        <div id="selector-end">
+          <div class="selector-end-layer" id="selector-end-layer1">layer1</div>
+          <div class="selector-end-layer" id="selector-end-layer2">layer2</div>
+          <div class="selector-end-layer" id="selector-end-layer3">layer3</div>
+          <div class="selector-end-layer" id="selector-end-layer4">layer4</div>
+          <div class="selector-end-layer" id="selector-end-layer5">layer5</div>
+        </div>
+      </div>
+    </div>
+    <script src="script.js"></script>
+    <script src="./scripts/gui.js"></script>
+  </body>
+</html>

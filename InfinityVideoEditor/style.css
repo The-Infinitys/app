@@ -1,11 +1,23 @@
+:root {
+  --color_background: white;
+  --color_border: black;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color_background: black;
+    --color_border: white;
+  }
+}
 * {
   padding: 0;
   margin: 0;
   overflow: hidden;
 }
 
+
 body {
-  background-color: black;
+  background-color: var(--color_background);
 }
 
 #leftMenu,
@@ -13,7 +25,7 @@ body {
 #editor,
 #play-data-display,
 #selector {
-  border: 3px solid black;
+  border: 3px solid var(--color_border);
   animation-name: rainbowborder;
   animation-duration: 5s;
   animation-timing-function: linear;
@@ -33,8 +45,8 @@ body {
   width: 100%;
   height: 25%;
   vertical-align: top;
-  background-color: black;
-  border: 2px solid black;
+  background-color: var(--color_background);
+  border: 2px solid var(--color_border);
   animation-name: rainbowborder, rainbow;
   animation-duration: 5s;
   animation-timing-function: linear;
@@ -70,6 +82,10 @@ body {
   height: 45%;
   top: 0;
   left: 10%;
+}
+
+#screen {
+  background-color: var(--color_background);
 }
 
 #editor {
@@ -208,8 +224,8 @@ body {
   position: absolute;
   aspect-ratio: 1;
   width: 5vh;
-  border: 2px solid black;
-  background-color: black;
+  border: 2px solid var(--color_border);
+  background-color: var(--color_background);
   animation-name: rainbow, rainbowborder;
   animation-duration: 5s;
   animation-timing-function: linear;
@@ -224,7 +240,7 @@ body {
   border: none;
   width: 100%;
   height: 100%;
-  background-color: black;
+  background-color: var(--color_background);
   animation-name: rainbow;
   animation-duration: 5s;
   animation-timing-function: linear;
@@ -302,12 +318,12 @@ body {
   width: 100%;
   height: 100%;
   display: flex;
-  background-color: black;
+  background-color: var(--color_background);
 }
 
 #editor-subtitle {
   position: fixed;
-  color: white;
+  color: var(--color_border);
   position: absolute;
   left: 7.5vh;
   font-size: 3vh;
@@ -331,8 +347,8 @@ body {
 .editor-addElem-button {
   width: 100%;
   height: 25%;
-  background-color: black;
-  border: 1.5px solid black;
+  background-color: var(--color_background);
+  border: 1.5px solid var(--color_border);
   animation-name: rainbow, rainbowborder;
   animation-duration: 5s;
   animation-timing-function: linear;
@@ -365,8 +381,8 @@ body {
   left: 10%;
   width: 50%;
   height: 5%;
-  background-color: black;
-  border: 3px solid black;
+  background-color: var(--color_background);
+  border: 3px solid var(--color_border);
   animation-name: rainbow, rainbowborder;
   animation-duration: 5s;
   animation-timing-function: linear;
@@ -377,8 +393,8 @@ body {
 .player-button {
   height: 100%;
   aspect-ratio: 1;
-  background-color: black;
-  border: 1px solid black;
+  background-color: var(--color_background);
+  border: 1px solid var(--color_border);
   animation-name: rainbow, rainbowborder;
   animation-duration: 5s;
   animation-timing-function: linear;
@@ -396,11 +412,11 @@ body {
 
 #guideline {
   position: fixed;
-  top: 50%;
-  left: 47.5%;
+  bottom: 0;
+  left: calc(50% - 2.5%);
   height: 50%;
-  width: 5%;
-  z-index: 100;
+  width: auto;
+  z-index: 1;
   animation-name: rainbowfill;
   animation-duration: 5s;
   animation-timing-function: linear;
@@ -415,7 +431,7 @@ body {
 }
 
 #current-time {
-  color: white;
+  color: var(--color_border);
   font-family: sans-selif;
   font-size: 3vh;
 }
@@ -439,7 +455,7 @@ body {
   left: 0;
   width: 50%;
   height: 100%;
-  background-color: black;
+  background-color: var(--color_background);
   display: flex;
   flex-direction: column;
 }
@@ -448,10 +464,10 @@ body {
 .selector-end-layer {
   width: 100%;
   height: 20%;
-  background-color: black;
-  color: white;
-  font-size:5vh;
-  border: 2px solid white;
+  background-color: var(--color_background);
+  color: var(--color_border);
+  font-size: 5vh;
+  border: 2px solid var(--color_border);
   animation-name: rainbow, rainbowborder;
   animation-duration: 5s;
   animation-timing-function: linear;
@@ -463,9 +479,9 @@ body {
   --selector-elems-width: 150%;
   position: absolute;
   left: calc(50% + 3px);
-  width: calc(50vw  + var(--selector-elems-width));
+  width: calc(50vw + var(--selector-elems-width));
   height: 100%;
-  background-color: black;
+  background-color: var(--color_background);
   display: flex;
   flex-direction: column;
 }
@@ -473,9 +489,9 @@ body {
 .selector-elems-layer {
   width: 100%;
   height: 20%;
-  background-color: black;
-  color: white;
-  border: 2px solid white;
+  background-color: var(--color_background);
+  color: var(--color_border);
+  border: 2px solid var(--color_border);
   animation-name: rainbow, rainbowborder;
   animation-duration: 5s;
   animation-timing-function: linear;
@@ -483,33 +499,37 @@ body {
 }
 
 .element-image {
-  color: white;
+  color: var(--color_border);
   border: blue solid 5vh;
 }
+
 .element-video {
-  color: white;
+  color: var(--color_border);
   border: green solid 5vh;
 }
+
 .element-audio {
-  color: white;
+  color: var(--color_border);
   border: red solid 5vh;
-}.element-text {
-  color: white;
+}
+
+.element-text {
+  color: var(--color_border);
   border: blue solid 5vh;
 }
 
 #selector-end {
   position: absolute;
   text-align: right;
-  right:0;
+  right: 0;
   width: calc(50vw - 4 * 3px);
   height: 100%;
-  background-color: black;
+  background-color: var(--color_background);
   display: flex;
   flex-direction: column;
 }
 
-#current-time{
+#current-time {
   animation-name: rainbow;
   animation-duration: 5s;
   animation-timing-function: linear;

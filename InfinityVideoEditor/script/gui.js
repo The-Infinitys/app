@@ -36,7 +36,7 @@ const sprite_text = {
   animation: [],
 };
 //
-let current_time=0;
+let current_time = 0;
 //ファイルの読み込み
 document
   .getElementById("file-dialog-source")
@@ -62,20 +62,19 @@ document
 function swapFullScreen() {
   let screen = document.getElementById("screen");
   screen.style = "top:0;left:0;width:100%;height:90%;";
-  let controller=document.getElementById("playControler");
-  controller.style="top:90%;left:0;width:100%;height:10%;";
-  let normalScreen=document.getElementById("normalScreen");
-  normalScreen.style.visibility="visible";
+  let controller = document.getElementById("playControler");
+  controller.style = "top:90%;left:0;width:100%;height:10%;";
+  let normalScreen = document.getElementById("normalScreen");
+  normalScreen.style.visibility = "visible";
 }
 //swapFullScreenを元に戻す為
-function normalScreen(){
-
+function normalScreen() {
   let screen = document.getElementById("screen");
   screen.style = "";
-  let controller=document.getElementById("playControler");
-  controller.style="";
-  let normalScreen=document.getElementById("normalScreen");
-  normalScreen.style.visibility="hidden";
+  let controller = document.getElementById("playControler");
+  controller.style = "";
+  let normalScreen = document.getElementById("normalScreen");
+  normalScreen.style.visibility = "hidden";
 }
 function importFile() {
   //ソース(動画、画像、音声)をimportする為にボタンを押させる関数
@@ -107,11 +106,11 @@ function menu_open_AddElement() {
 }
 
 //test
-setInterval(()=>{
-  let current_time_display=document.getElementById("current-time");
-  let selector=document.getElementById("selector");
-  current_time=selector.scrollLeft;
-  selector.scrollLeft=Math.max(0,selector.scrollLeft);
-  selector.scrollLeft=Math.min(selector.scrollLeft,selector.scrollWidth);
-  current_time_display.innerHTML=current_time;
-},10);
+function renewCurrentTime(){
+  let current_time_display = document.getElementById("current-time");
+  let selector = document.getElementById("selector");
+  selector.scrollLeft = Math.max(0, selector.scrollLeft);
+  selector.scrollLeft = Math.min(selector.scrollLeft, selector.scrollWidth);
+  current_time = selector.scrollLeft;
+  current_time_display.innerHTML = current_time;
+};

@@ -19,7 +19,6 @@
 body {
   background-color: var(--color_background);
 }
-
 #leftMenu,
 #screen,
 #editor,
@@ -79,6 +78,7 @@ body {
 
 #screen {
   position: fixed;
+    z-index:10;
   width: 50%;
   height: 45%;
   top: 0;
@@ -227,7 +227,7 @@ body {
   aspect-ratio: 1;
   width: 5vh;
   border: 2px solid var(--color_border);
-  background-color: var(--color_border);
+  background-color: var(--color_background);
   animation-name: rainbow, rainbowborder;
   animation-duration: 5s;
   animation-timing-function: linear;
@@ -384,13 +384,13 @@ body {
   left: 10%;
   width: 50%;
   height: 5%;
+  z-index: 10;
   background-color: var(--color_background);
   border: 3px solid var(--color_border);
   animation-name: rainbow, rainbowborder;
   animation-duration: 5s;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
-
 }
 
 .player-button {
@@ -412,7 +412,9 @@ body {
   animation-timing-function: linear;
   animation-iteration-count: infinite;
 }
-
+#normalScreen{
+  visibility: hidden;
+}
 #guideline {
   position: fixed;
   bottom: 0;

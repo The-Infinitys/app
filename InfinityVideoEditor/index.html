@@ -32,6 +32,18 @@
       <canvas id="video"></canvas>
     </div>
     <div id="playControler">
+      <button class="player-button" id="normalScreen" onclick="normalScreen()">
+        <svg
+          class="player-button-svg"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 100 100"
+          fill="#fff">
+          <polygon points="10 0,10 10,0 10,0 20,20 20,20 0" />
+          <polygon points="90 0,90 10,100 10,100 20,80 20 80 0" />
+          <polygon points="10 100,10 90,0 90,0 80,20 80,20 100" />
+          <polygon points="90 100,90 90,100 90,100 80,80 80 80 100" />
+        </svg>
+      </button>
       <button class="player-button" id="Skip">
         <svg
           class="player-button-svg"
@@ -83,6 +95,9 @@
           <rect x="85" y="0" width="15" height="100" />
         </svg>
       </button>
+      <div style="width:15%;visibility: hidden;">
+        normalScreenを生成した際にボタンがずれるのを防ぐため
+      </div>
     </div>
 
     <div id="editor">

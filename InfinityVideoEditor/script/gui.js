@@ -58,12 +58,22 @@ document
 
 //left menu
 function swapFullScreen() {
-  screen = document.getElementById("screen");
-  screen.style.zIndex = "10";
-  screen.style.top = "0";
-  screen.style.left = "0";
-  screen.style.width = "100%";
-  screen.style.height = "100%";
+  let screen = document.getElementById("screen");
+  screen.style = "top:0;left:0;width:100%;height:90%;";
+  let controller=document.getElementById("playControler");
+  controller.style="top:90%;left:0;width:100%;height:10%;";
+  let normalScreen=document.getElementById("normalScreen");
+  normalScreen.style.visibility="visible";
+}
+//swapFullScreenを元に戻す為
+function normalScreen(){
+
+  let screen = document.getElementById("screen");
+  screen.style = "";
+  let controller=document.getElementById("playControler");
+  controller.style="";
+  let normalScreen=document.getElementById("normalScreen");
+  normalScreen.style.visibility="hidden";
 }
 function importFile() {
   //ソース(動画、画像、音声)をimportする為にボタンを押させる関数

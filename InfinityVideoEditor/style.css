@@ -2,6 +2,7 @@
   --color_background: white;
   --color_border: black;
   --rainbow:"true";
+  --current_time: 100;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -448,9 +449,10 @@ body {
   top: 55%;
   left: 0;
   overflow: scroll;
-  text-overflow: clip;
   display: flex;
   justify-content: flex-end;
+  display: flex;
+  flex-direction: column;
 }
 
 #selector-start {
@@ -458,39 +460,37 @@ body {
   position: absolute;
   top: 0;
   left: 0;
-  width: 50%;
+  width: 20%;
   height: 100%;
   background-color: var(--color_background);
   display: flex;
   flex-direction: column;
 }
 
-.selector-start-layer,
-.selector-end-layer {
+#selector-main {
+  box-sizing: content-box;
+  position: absolute;
+  left: calc(20%);
+  width: calc(80vw + var(--current_time) * 1vw);
+  height: 100%;
+  background-color: var(--color_background);
+  display: flex;
+  flex-direction: column;
+}
+
+
+.selector-start-layer{
   width: 100%;
   height: 20%;
   background-color: var(--color_background);
   color: var(--color_border);
-  font-size: 5vh;
+  font-size: min(5vh,6vw);
   border: 2px solid var(--color_border);
   animation-name: rainbow, rainbowborder;
   animation-duration: 5s;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
 }
-
-#selector-main {
-  box-sizing: content-box;
-  --selector-elems-width: 150%;
-  position: absolute;
-  left: calc(50% + 3px);
-  width: calc(50vw + var(--selector-elems-width));
-  height: 100%;
-  background-color: var(--color_background);
-  display: flex;
-  flex-direction: column;
-}
-
 .selector-elems-layer {
   width: 100%;
   height: 20%;
@@ -527,7 +527,7 @@ body {
   position: absolute;
   text-align: right;
   right: 0;
-  width: calc(50vw - 4 * 3px);
+  width: calc(50vw - 3px);
   height: 100%;
   background-color: var(--color_background);
   display: flex;

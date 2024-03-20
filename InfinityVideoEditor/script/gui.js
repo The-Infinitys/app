@@ -35,6 +35,8 @@ const sprite_text = {
   duration: 0,
   animation: [],
 };
+//
+let current_time=0;
 //ファイルの読み込み
 document
   .getElementById("file-dialog-source")
@@ -103,3 +105,13 @@ function menu_open_AddElement() {
   document.getElementById("editor-back").style.visibility = "visible";
   document.getElementById("editor-subtitle").innerHTML = "add Element";
 }
+
+//test
+setInterval(()=>{
+  let current_time_display=document.getElementById("current-time");
+  let selector=document.getElementById("selector");
+  current_time=selector.scrollLeft;
+  selector.scrollLeft=Math.max(0,selector.scrollLeft);
+  selector.scrollLeft=Math.min(selector.scrollLeft,selector.scrollWidth);
+  current_time_display.innerHTML=current_time;
+},10);

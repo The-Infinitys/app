@@ -130,6 +130,9 @@ let play = {
   selector: () => {
     if (is_played) {
       let selector = document.getElementById("selector");
+      Dt = (Date.now() - before)/1000;
+      FPS = 1 / Dt;
+      before = Date.now();
       current_time+=Dt;
       selector.scrollLeft = current_time * 100;
       let display_result = current_time.toString();

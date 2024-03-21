@@ -1,42 +1,7 @@
 //メモリ取得(プロジェクト用)
-var importedSources = [];
-var ProjectJSON = {
-  title: "",
-  sources: [], //here is the name of source file.
-  sprites: {}, //Here is the data of sprite.
-};
-const sprite_video = {
-  name: "",
-  source: {
-    name: "",
-    start: 0,
-    speed: 1,
-  },
-  start_time: 0,
-  duration: 0,
-  animation: [],
-};
-
-const sprite_image = {
-  name: "",
-  source: "",
-  start_time: 0,
-  duration: 0,
-  animation: [],
-};
-
-const sprite_text = {
-  name: "",
-  source: {
-    text: "",
-    font: "",
-  },
-  start_time: 0,
-  duration: 0,
-  animation: [],
-};
 //
 let current_time = 0;
+let is_played = false;
 //ファイルの読み込み
 document
   .getElementById("file-dialog-source")
@@ -105,12 +70,71 @@ function menu_open_AddElement() {
   document.getElementById("editor-subtitle").innerHTML = "add Element";
 }
 
-//test
-function renewCurrentTime(){
+function scrollCurrentTime() {
   let current_time_display = document.getElementById("current-time");
   let selector = document.getElementById("selector");
   selector.scrollLeft = Math.max(0, selector.scrollLeft);
   selector.scrollLeft = Math.min(selector.scrollLeft, selector.scrollWidth);
-  current_time = selector.scrollLeft;
-  current_time_display.innerHTML = current_time;
+  current_time = selector.scrollLeft / 100;
+  let display_result = current_time.toString();
+  current_time_display.innerHTML = display_result.padEnd(
+    display_result.lastIndexOf(".") + 3,
+    "0"
+  );
+  if (current_time == 0) current_time_display.innerHTML = "0.00";
+}
+function renewCurrentTime(){
+  let current_time_display = document.getElementById("current-time");
+  let selector = document.getElementById("selector");
+  let display_result = current_time.toString();
+  selector.scrollLeft=current_time/100;
+  current_time_display.innerHTML = display_result.padEnd(
+    display_result.lastIndexOf(".") + 3,
+    "0"
+  );
+  if (current_time == 0) current_time_display.innerHTML = "0.00";
+}
+
+function swapPlay() {
+  let button = document.getElementById("play-and-stop").children[0];
+  if (is_played) {
+    button.innerHTML = `
+        <polygon points="10 0, 10 100, 90 50" />
+      `;
+  } else {
+    button.innerHTML = `
+        <polygon points="10 5, 10 95,30 95,30 5" />
+        <polygon points="90 5, 90 95,70 95,70 5" />
+      `;
+  }
+  is_played = !is_played;
+}
+
+function go_first(){
+  current_time=0;
+  renewCurrentTime();
+}
+
+let FPS = Infinity;
+let Dt = 0;
+let before = Date.now();
+function checkFPS() {
+  Dt = (Date.now() - before)/1000;
+  FPS = 1 / Dt;
+  before = Date.now();
+  requestAnimationFrame(checkFPS);
+}
+checkFPS();
+
+let play = {
+  selector: () => {
+    if (is_played) {
+      let selector = document.getElementById("selector");
+      current_time+=Dt;
+      selector.scrollLeft = current_time * 100;
+      let display_result = current_time.toString();
+    }
+    requestAnimationFrame(play.selector);
+  },
 };
+play.selector();

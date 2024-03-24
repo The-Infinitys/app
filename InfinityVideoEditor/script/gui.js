@@ -2,9 +2,9 @@
 //
 let current_time = 0;
 let is_played = false;
-let project={
-  video_length:10,
-}
+let project = {
+  video_length: 10,
+};
 //ファイルの読み込み
 document
   .getElementById("file-dialog-source")
@@ -73,33 +73,26 @@ function menu_open_AddElement() {
   document.getElementById("editor-subtitle").innerHTML = "add Element";
 }
 
-
 //再生機器系統のプログラム
 function scrollCurrentTime() {
-  let current_time_display = document.getElementById("current-time");
   let selector = document.getElementById("selector");
   selector.scrollLeft = Math.max(0, selector.scrollLeft);
   selector.scrollLeft = Math.min(selector.scrollLeft, selector.scrollWidth);
   current_time = selector.scrollLeft / 100;
-  let display_result = current_time.toString();
-  current_time_display.innerHTML = display_result.padEnd(
-    display_result.lastIndexOf(".") + 3,
-    "0"
-  );
-  if (current_time == 0) current_time_display.innerHTML = "0.00";
+  renewCurrentTime();
 }
 function renewCurrentTime() {
   let current_time_display = document.getElementById("current-time");
-  let selector = document.getElementById("selector");
-  let display_result = current_time.toString();
+  let display_result = (Math.round(current_time*100)/100).toString();
+  if (display_result.lastIndexOf(".") == -1) display_result += ".";
   current_time_display.innerHTML = display_result.padEnd(
     display_result.lastIndexOf(".") + 3,
     "0"
   );
-  if (current_time == 0) current_time_display.innerHTML = "0.00";
-  selector.style.setProperty('--video_length',project.video_length);
   requestAnimationFrame(renewCurrentTime);
-}renewCurrentTime();
+  document.documentElement.style.setProperty("--video_length",project.video_length);
+}
+renewCurrentTime();
 
 function swapPlay() {
   let button = document.getElementById("play-and-stop").children[0];
@@ -130,8 +123,8 @@ let play = {
       current_time = (Date.now() - play.startedDate) / 1000 + play.lastplayed;
       selector.scrollLeft = current_time * 100;
       let display_result = current_time.toString();
-      if (current_time>project.video_length){
-        current_time=project.video_length;
+      if (current_time > project.video_length) {
+        current_time = project.video_length;
         swapPlay();
       }
     } else {

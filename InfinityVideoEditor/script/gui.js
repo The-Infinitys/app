@@ -2,6 +2,9 @@
 //
 let current_time = 0;
 let is_played = false;
+let project={
+  video_length:10,
+}
 //ファイルの読み込み
 document
   .getElementById("file-dialog-source")
@@ -70,6 +73,8 @@ function menu_open_AddElement() {
   document.getElementById("editor-subtitle").innerHTML = "add Element";
 }
 
+
+//再生機器系統のプログラム
 function scrollCurrentTime() {
   let current_time_display = document.getElementById("current-time");
   let selector = document.getElementById("selector");
@@ -83,17 +88,18 @@ function scrollCurrentTime() {
   );
   if (current_time == 0) current_time_display.innerHTML = "0.00";
 }
-function renewCurrentTime(){
+function renewCurrentTime() {
   let current_time_display = document.getElementById("current-time");
   let selector = document.getElementById("selector");
   let display_result = current_time.toString();
-  selector.scrollLeft=current_time/100;
   current_time_display.innerHTML = display_result.padEnd(
     display_result.lastIndexOf(".") + 3,
     "0"
   );
   if (current_time == 0) current_time_display.innerHTML = "0.00";
-}
+  selector.style.setProperty('--video_length',project.video_length);
+  requestAnimationFrame(renewCurrentTime);
+}renewCurrentTime();
 
 function swapPlay() {
   let button = document.getElementById("play-and-stop").children[0];
@@ -110,32 +116,27 @@ function swapPlay() {
   is_played = !is_played;
 }
 
-function go_first(){
-  current_time=0;
+function go_first() {
+  current_time = 0;
   renewCurrentTime();
 }
 
-let FPS = Infinity;
-let Dt = 0;
-let before = Date.now();
-function checkFPS() {
-  Dt = (Date.now() - before)/1000;
-  FPS = 1 / Dt;
-  before = Date.now();
-  requestAnimationFrame(checkFPS);
-}
-checkFPS();
-
 let play = {
+  lastplayed: 0,
+  startedDate: Date.now(),
   selector: () => {
     if (is_played) {
       let selector = document.getElementById("selector");
-      Dt = (Date.now() - before)/1000;
-      FPS = 1 / Dt;
-      before = Date.now();
-      current_time+=Dt;
+      current_time = (Date.now() - play.startedDate) / 1000 + play.lastplayed;
       selector.scrollLeft = current_time * 100;
       let display_result = current_time.toString();
+      if (current_time>project.video_length){
+        current_time=project.video_length;
+        swapPlay();
+      }
+    } else {
+      play.lastplayed = current_time;
+      play.startedDate = Date.now();
     }
     requestAnimationFrame(play.selector);
   },

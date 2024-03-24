@@ -2,7 +2,7 @@
   --color_background: white;
   --color_border: black;
   --rainbow: "true";
-  --current_time: 100;
+  --video_length: 0;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -477,7 +477,7 @@ body {
   box-sizing: content-box;
   position: absolute;
   left: calc(20%);
-  width: calc(80vw + var(--current_time) * 1vw);
+  width: calc(80vw + var(--video_length) * 100px);
   height: 100%;
   background-color: var(--color_background);
   display: flex;

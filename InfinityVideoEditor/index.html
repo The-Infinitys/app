@@ -13,7 +13,7 @@
       <button
         class="left-buttons"
         id="swapFullScreen"
-        onclick="swapFullScreen()">
+        onclick="gui.left_menu.fullScreen()">
         <svg
           style="width:100%;height:10vh;"
           class="player-button-svg"
@@ -33,7 +33,7 @@
     </div>
     <div id="playControler">
       <p id="current-time">0.00</p>
-      <button class="player-button" id="go-first" onclick="go_first()">
+      <button class="player-button" id="go-first" onclick="gui.player.first()">
         <svg
           class="player-button-svg"
           xmlns="http://www.w3.org/2000/svg"
@@ -54,7 +54,7 @@
           <polygon points="50 0, 50 100, 0 50" />
         </svg>
       </button>
-      <button class="player-button" id="play-and-stop" onclick="swapPlay()">
+      <button class="player-button" id="play-and-stop" onclick="gui.player.swapPlay()">
         <svg
           class="player-button-svg"
           xmlns="http://www.w3.org/2000/svg"
@@ -84,7 +84,7 @@
           <rect x="85" y="0" width="15" height="100" />
         </svg>
       </button>
-      <button class="player-button" id="normalScreen" onclick="normalScreen()">
+      <button class="player-button" id="normalScreen" onclick="gui.left_menu.fullScreen()">
         <svg
           class="player-button-svg"
           xmlns="http://www.w3.org/2000/svg"
@@ -103,7 +103,7 @@
         <button
           class="editor-menu"
           id="editor-button-addElem"
-          onclick="menu_open_AddElement()">
+          onclick="gui.editor.open('addElem')">
           +
         </button>
         <button class="editor-menu" id="editor-button-importProject">
@@ -112,7 +112,7 @@
         <button
           class="editor-menu"
           id="editor-button-importFile"
-          onclick="importFile()">
+          onclick="gui.editor.importFile()">
           import<br />file
         </button>
         <button class="editor-menu" id="editor-button-export">export</button>
@@ -130,7 +130,7 @@
       </div>
       <div class="editor-menus" id="editor-menu-sub">
         <div id="editor-menu-sub-top">
-          <button id="editor-back" onclick="backEditorMenu()">↩︎</button>
+          <button id="editor-back" onclick="gui.editor.back()">↩︎</button>
           <h1 id="editor-subtitle">Null</h1>
         </div>
         <div id="editor-menu-sub-bottom">
@@ -168,7 +168,7 @@
       <rect x="47.5" y="0" width="5" height="1000" />
     </svg>
     <div id="play-data-display"></div>
-    <div id="selector" onscroll="scrollCurrentTime()">
+    <div id="selector" onscroll="gui.player.scroll()">
       <div id="selector-start">
         <div class="selector-start-layer" id="selector-start-layer1">
           layer-1

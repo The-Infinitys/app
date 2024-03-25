@@ -9,10 +9,12 @@ gui = {
       const controller = document.getElementById("playControler");
       const normalScreen = document.getElementById("normalScreen");
       if (normalScreen.style.visibility == "visible") {
+        //最大化解除
         screen.style = "";
         controller.style = "";
         normalScreen.style.visibility = "hidden";
       } else {
+        //画面最大化
         screen.style = "top:0;left:0;width:100%;height:90%;";
         controller.style = "top:90%;left:0;width:100%;height:10%;";
         normalScreen.style.visibility = "visible";
@@ -88,6 +90,13 @@ gui = {
     first: () => {
       gui.player.current_time = 0;
       document.getElementById("selector").scrollLeft = 0;
+      gui.player.renew();
+    },
+
+    last: () => {
+      gui.player.current_time = project.video_length;
+      const selector = document.getElementById("selector");
+      selector.scrollLeft = selector.scrollWidth;
       gui.player.renew();
     },
     playing: {

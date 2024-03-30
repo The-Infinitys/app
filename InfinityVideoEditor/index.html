@@ -54,7 +54,10 @@
           <polygon points="50 0, 50 100, 0 50" />
         </svg>
       </button>
-      <button class="player-button" id="play-and-stop" onclick="gui.player.swapPlay()">
+      <button
+        class="player-button"
+        id="play-and-stop"
+        onclick="gui.player.swapPlay()">
         <svg
           class="player-button-svg"
           xmlns="http://www.w3.org/2000/svg"
@@ -84,7 +87,10 @@
           <rect x="85" y="0" width="15" height="100" />
         </svg>
       </button>
-      <button class="player-button" id="normalScreen" onclick="gui.left_menu.fullScreen()">
+      <button
+        class="player-button"
+        id="normalScreen"
+        onclick="gui.left_menu.fullScreen()">
         <svg
           class="player-button-svg"
           xmlns="http://www.w3.org/2000/svg"
@@ -169,32 +175,16 @@
     </svg>
     <div id="play-data-display"></div>
     <div id="selector" onscroll="gui.player.scroll()">
-      <div id="selector-start">
-        <div class="selector-start-layer" id="selector-start-layer1">
-          layer-1
-        </div>
-        <div class="selector-start-layer" id="selector-start-layer2">
-          layer-2
-        </div>
-        <div class="selector-start-layer" id="selector-start-layer3">
-          layer-3
-        </div>
-        <div class="selector-start-layer" id="selector-start-layer4">
-          layer-4
-        </div>
-        <div class="selector-start-layer" id="selector-start-layer5">
-          layer-5
-        </div>
-      </div>
-      <div id="selector-main">
-        <div class="selector-elems-layer" id="selector-elems-layer1"></div>
-        <div class="selector-elems-layer" id="selector-elems-layer2"></div>
-        <div class="selector-elems-layer" id="selector-elems-layer3"></div>
-        <div class="selector-elems-layer" id="selector-elems-layer4"></div>
-        <div class="selector-elems-layer" id="selector-elems-layer5"></div>
-      </div>
+      <div class="inside_selectors" id="selector-start"></div>
+      <div class="inside_selectors" id="selector-main"></div>
+      <div class="inside_selectors" id="selector-end"></div>
+    </div>
+    <!--Scripts-->
+    <div id="scripts_global">
+      <p id="video_length">10</p>
     </div>
     <script src="./script.js"></script>
     <script src="./script/gui.js"></script>
+    <script src="./script/project.js"></script>
   </body>
 </html>

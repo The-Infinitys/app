@@ -1,8 +1,7 @@
-project = {
-  video_length: 10,
-};
-
 gui = {
+  video_length: () => {
+    return parseFloat(document.querySelector("#video_length").innerHTML);
+  },
   left_menu: {
     fullScreen: () => {
       const screen = document.getElementById("screen");
@@ -69,7 +68,7 @@ gui = {
       );
       document.documentElement.style.setProperty(
         "--video_length",
-        project.video_length
+        gui.video_length()
       );
       requestAnimationFrame(gui.player.renew);
     },
@@ -94,7 +93,7 @@ gui = {
     },
 
     last: () => {
-      gui.player.current_time = project.video_length;
+      gui.player.current_time = gui.video_length();
       const selector = document.getElementById("selector");
       selector.scrollLeft = selector.scrollWidth;
       gui.player.renew();
@@ -109,8 +108,8 @@ gui = {
             (Date.now() - gui.player.playing.startedDate) / 1000 +
             gui.player.playing.lastplayed;
           selector.scrollLeft = gui.player.current_time * 100;
-          if (gui.player.current_time > project.video_length) {
-            gui.player.current_time = project.video_length;
+          if (gui.player.current_time > gui.video_length()) {
+            gui.player.current_time = gui.video_length();
             gui.player.swapPlay();
           }
         } else {

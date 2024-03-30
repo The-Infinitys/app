@@ -381,7 +381,7 @@ body {
 /*selector*/
 #playControler {
   display: flex;
-  justify-content: center;
+  justify-content: right;
   position: absolute;
   top: 45%;
   left: 10%;
@@ -440,13 +440,7 @@ body {
   top: 50%;
 }
 
-#current-time {
-  color: var(--color_border);
-  font-family: sans-selif;
-  font-size: 3.5vh;
-  position: inherit;
-  left: 0;
-}
+
 
 #selector {
   position: fixed;
@@ -455,95 +449,47 @@ body {
   top: 55%;
   left: 0;
   overflow: scroll;
-  display: flex;
-  justify-content: flex-end;
-  display: flex;
-  flex-direction: column;
+}
+
+.inside_selectors {
+  border: 3px solid var(--color_border);
+  animation-name: rainbowborder;
+  animation-duration: 5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  position: absolute;
+  background-color: var(--color_background);
+  top: 0%;
+  height: 45vh;
 }
 
 #selector-start {
-  box-sizing: content-box;
-  position: absolute;
-  top: 0;
   left: 0;
-  width: 20%;
-  height: 100%;
-  background-color: var(--color_background);
-  display: flex;
-  flex-direction: column;
+  width: 50vw;
 }
 
 #selector-main {
-  box-sizing: content-box;
-  position: absolute;
-  left: calc(20%);
-  width: calc(80vw + var(--video_length) * 100px);
-  height: 100%;
-  background-color: var(--color_background);
-  display: flex;
-  flex-direction: column;
-}
-
-
-.selector-start-layer {
-  width: 100%;
-  height: 20%;
-  background-color: var(--color_background);
-  color: var(--color_border);
-  font-size: min(5vh, 6vw);
-  border: 2px solid var(--color_border);
-  animation-name: rainbow, rainbowborder;
-  animation-duration: 5s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-}
-
-.selector-elems-layer {
-  width: 100%;
-  height: 20%;
-  background-color: var(--color_background);
-  color: var(--color_border);
-  border: 2px solid var(--color_border);
-  animation-name: rainbow, rainbowborder;
-  animation-duration: 5s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-}
-
-.element-image {
-  color: var(--color_border);
-  border: blue solid 5vh;
-}
-
-.element-video {
-  color: var(--color_border);
-  border: green solid 5vh;
-}
-
-.element-audio {
-  color: var(--color_border);
-  border: red solid 5vh;
-}
-
-.element-text {
-  color: var(--color_border);
-  border: blue solid 5vh;
+  left: 50vw;
+  width: calc(50vw + var(--video_length) * 100px);
 }
 
 #selector-end {
-  position: absolute;
-  text-align: right;
-  right: 0;
-  width: calc(50vw - 3px);
-  height: 100%;
-  background-color: var(--color_background);
-  display: flex;
-  flex-direction: column;
+  left: calc(50vw + var(--video_length) * 100px);
+  width: 50vw;
 }
 
 #current-time {
+  color: var(--color_border);
+  font-family: sans-selif;
+  font-size: 3.5vh;
+  position: inherit;
+  left: 0;
   animation-name: rainbow;
   animation-duration: 5s;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
+}
+
+#scripts_global {
+  visibility: hidden;
 }

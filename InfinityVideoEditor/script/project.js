@@ -36,13 +36,15 @@ const elem = {
   },
 };
 
+class element {
+  constructor(type) {
+    this.info = elem;
+    this.buttom = document.createElement("buttom");
+  }
+}
+
 project = {
-  json: {
-    elems: [],
-    meta: {
-      UA: navigator.userAgent,
-    },
-  },
+  elems: [],
   currentTime: () => {
     return parseFloat(document.querySelector("#current-time").innerHTML);
   },
@@ -51,25 +53,8 @@ project = {
   },
   elem: {
     add: (type) => {
-      let result = elem;
-      if (type == "video") {
-        result.video = {};
-        result.video.source = "";
-        result.video.start = "0";
-        result.video.speed = 1;
-      } else if (type == "image") {
-        result.image = {};
-        result.image.source = "";
-        result.image.crip = null;
-      } else if (type == "text") {
-        result.text = {};
-        result.text.data = "";
-        result.text.style = "";
-      } else if (type == "audio") {
-        result.audio = {};
-        result.audio.source = "";
-        result.audio.start = 0;
-        result.audio.speed = 1;
+      if (type == "video" || type == "image" || type == "text" || type == "audio") {
+        project.elems.append(new element(type));
       } else {
         console.error("I don't know", type, "elem... (By project manager)");
         return false;

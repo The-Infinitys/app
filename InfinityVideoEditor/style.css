@@ -471,7 +471,7 @@ body {
 #selector-main {
   left: 50vw;
   width: calc(50vw + var(--video_length) * 100px);
-  overflow: scroll;
+  overflow: hidden scroll;
 }
 
 .elem_buttom {
@@ -482,6 +482,7 @@ body {
   top:calc(var(--layer) * 10%);
   left:calc(var(--start) * 100px);
   width:calc(var(--length) * 100px);
+  
   height:10%;
   background-color:red;
   border: 0px solid;

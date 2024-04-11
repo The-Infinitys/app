@@ -478,14 +478,18 @@ body {
   --start:0;
   --length: 0;
   --layer:0;
+  --elem-type-image:#f00;
+  --elem-type-audio:#f0f;
+  --elem-type-video:#0f0;
+  --elem-type-text:#00f;
+  --elem-type:#ffffff;/*指定されていない場合*/
   position:absolute;
   top:calc(var(--layer) * 10%);
   left:calc(var(--start) * 100px);
   width:calc(var(--length) * 100px);
-  
   height:10%;
-  background-color:red;
   border: 0px solid;
+  background-color: var(--elem-type);
 }
 
 #selector-end {

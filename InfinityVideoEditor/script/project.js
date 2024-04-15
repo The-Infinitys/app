@@ -4,7 +4,7 @@ class element {
       type: type, //video image text audioのどれかが入る
       start: project.currentTime(),
       length: 1,
-      layer:1,
+      layer: 1,
       animation: {
         0: {
           data: {
@@ -38,17 +38,18 @@ class element {
         },
       },
     };
-    let elem=document.createElement("buttom");
-    elem.className="elem_buttom";
-    this.elem=elem;
+    let elem = document.createElement("buttom");
+    elem.className = "elem_buttom";
+    this.info.layer=project.elem.check_max_layer_on(this.info.start,this.info.length)+1;
+    this.elem = elem;
     this.renewElem();
     document.querySelector("#selector-main").appendChild(this.elem);
   }
-  renewElem(){
-    this.elem.style.setProperty("--elem-type","var(--elem-type-"+this.info.type+")");
-    this.elem.style.setProperty("--length",this.info.length);
-    this.elem.style.setProperty("--start",this.info.start);
-    this.elem.style.setProperty("--layer",this.info.layer);
+  renewElem() {
+    this.elem.style.setProperty("--elem-type", "var(--elem-type-" + this.info.type + ")");
+    this.elem.style.setProperty("--length", this.info.length);
+    this.elem.style.setProperty("--start", this.info.start);
+    this.elem.style.setProperty("--layer", this.info.layer);
   }
 }
 
@@ -70,5 +71,21 @@ project = {
       }
       project.json.elems.append(result);
     },
+    check_max_layer_on: (start, length) => {
+      let end = start + length
+      let result = 0;
+      for (let i = 0; i < project.elems.length; ++i) {
+        i = project.elems[i].info
+        i = { start: i.start, length: i.length, end=i.start + i.length, layer: i.layer }
+        is_in = false;
+        if (start > i.end || end < i.start) { is_in = true; }
+        if (start <= i.start && i.start <= end) { is_in = true; }
+        if (start <= i.end && i.end <= end) { is_in = true; }
+        if (is_in) {
+          result = Math.max(result, i.layer);
+        }
+      }
+      return result;
+    }
   },
 };

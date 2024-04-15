@@ -40,7 +40,7 @@ class element {
     };
     let elem = document.createElement("buttom");
     elem.className = "elem_buttom";
-    this.info.layer=project.elem.check_max_layer_on(this.info.start,this.info.length)+1;
+    this.info.layer = project.elem.check_empty_layer_on(this.info.start, this.info.length)+1;
     this.elem = elem;
     this.renewElem();
     document.querySelector("#selector-main").appendChild(this.elem);
@@ -51,6 +51,21 @@ class element {
     this.elem.style.setProperty("--start", this.info.start);
     this.elem.style.setProperty("--layer", this.info.layer);
   }
+}
+function checkRange(a, b, c, d) {
+  /*if (a > d || b < c) {
+    return false;
+  }
+  if (a <= c && c <= b) {
+    return true;
+  }
+  if (a <= d && d <= b) {
+    return true;
+  }
+  return false;*/
+  let min=Math.max(a,c);
+  let max=Math.min(b,d);
+  return min<=max;
 }
 
 project = {
@@ -64,7 +79,7 @@ project = {
   elem: {
     add: (type) => {
       if (type == "video" || type == "image" || type == "text" || type == "audio") {
-        project.elems.append(new element(type));
+        project.elems.push(new element(type));
       } else {
         console.error("I don't know", type, "elem... (By project manager)");
         return false;
@@ -72,17 +87,25 @@ project = {
       project.json.elems.append(result);
     },
     check_max_layer_on: (start, length) => {
-      let end = start + length
+      let end = start + length;
       let result = 0;
       for (let i = 0; i < project.elems.length; ++i) {
-        i = project.elems[i].info
-        i = { start: i.start, length: i.length, end=i.start + i.length, layer: i.layer }
-        is_in = false;
-        if (start > i.end || end < i.start) { is_in = true; }
-        if (start <= i.start && i.start <= end) { is_in = true; }
-        if (start <= i.end && i.end <= end) { is_in = true; }
-        if (is_in) {
-          result = Math.max(result, i.layer);
+        data = project.elems[i].info;
+        data = { start: data.start, length: data.length, end: data.start + data.length, layer: data.layer };
+        if (checkRange(start, end, data.start, data.end) && result < data.layer) {
+          result = data.layer;
+        }
+      }
+      return result;
+    },
+    check_empty_layer_on: (start, length) => {
+      let end = start + length;
+      let result = 0;
+      for (let i = 0; i < project.elems.length; ++i) {
+        data = project.elems[i].info;
+        data = { start: data.start, length: data.length, end: data.start + data.length, layer: data.layer };
+        if (checkRange(start, end, data.start, data.end) && result+1 == data.layer) {
+          result = data.layer;
         }
       }
       return result;

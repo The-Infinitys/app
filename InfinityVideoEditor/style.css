@@ -474,22 +474,34 @@ body {
   overflow: hidden scroll;
 }
 
-.elem_buttom {
-  --start:0;
+.elem_button {
+  --start: 0;
   --length: 0;
-  --layer:0;
-  --elem-type-image:#f00;
-  --elem-type-audio:#f0f;
-  --elem-type-video:#0f0;
-  --elem-type-text:#00f;
-  --elem-type:#ffffff;/*指定されていない場合*/
-  position:absolute;
-  top:calc(var(--layer) * 10%);
-  left:calc(var(--start) * 100px);
-  width:calc(var(--length) * 100px);
-  height:10%;
+  --layer: 0;
+  --elem-type-image: #f00;
+  --elem-type-audio: #f0f;
+  --elem-type-video: #0f0;
+  --elem-type-text: #00f;
+  --elem-type: #ffffff;
+  /*指定されていない場合*/
+  position: absolute;
+  top: calc(var(--layer) * 10%);
+  left: calc(var(--start) * 100px);
+  width: calc(var(--length) * 100px);
+  height: calc(10% - 2px);
   border: 0px solid;
-  background-color: var(--elem-type);
+  background-color: var(--color_background);
+  border: 1px solid var(--elem-type);
+  overflow: hidden;
+}
+
+.elem-icon-image,
+.elem-icon-video,
+.elem-icon-audio,
+.elem-icon-text {
+	position: absolute;
+	top: 0;
+	left: 0;
 }
 
 #selector-end {

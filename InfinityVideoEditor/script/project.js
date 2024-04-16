@@ -2,6 +2,7 @@ class element {
   constructor(type) {
     this.info = {
       type: type, //video image text audioのどれかが入る
+      name:type+Math.random().toString,
       start: project.currentTime(),
       length: 1,
       layer: 1,
@@ -39,7 +40,7 @@ class element {
       },
     };
     let elem = document.createElement("buttom");
-    elem.className = "elem_buttom";
+    elem.className = "elem_button";
     this.info.layer = project.elem.check_empty_layer_on(this.info.start, this.info.length)+1;
     this.elem = elem;
     this.renewElem();
@@ -50,6 +51,8 @@ class element {
     this.elem.style.setProperty("--length", this.info.length);
     this.elem.style.setProperty("--start", this.info.start);
     this.elem.style.setProperty("--layer", this.info.layer);
+    const icon=document.querySelector(".elem-icon-"+this.info.type).outerHTML;
+    this.elem.innerHTML=icon+this.info.name;
   }
 }
 function checkRange(a, b, c, d) {

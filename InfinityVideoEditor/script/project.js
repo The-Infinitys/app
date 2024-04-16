@@ -2,7 +2,7 @@ class element {
   constructor(type) {
     this.info = {
       type: type, //video image text audioのどれかが入る
-      name:type+Math.random().toString,
+      name:type+Math.floor(Math.random()*10000).toString(),
       start: project.currentTime(),
       length: 1,
       layer: 1,
@@ -51,21 +51,13 @@ class element {
     this.elem.style.setProperty("--length", this.info.length);
     this.elem.style.setProperty("--start", this.info.start);
     this.elem.style.setProperty("--layer", this.info.layer);
-    const icon=document.querySelector(".elem-icon-"+this.info.type).outerHTML;
-    this.elem.innerHTML=icon+this.info.name;
+    const icon=document.querySelector(".elem-icon-"+this.info.type);
+    icon.style="width:5vh;height:100%;left:0;";
+    console.log(icon.outerHTML);
+    this.elem.innerHTML=icon.outerHTML+this.info.name;
   }
 }
 function checkRange(a, b, c, d) {
-  /*if (a > d || b < c) {
-    return false;
-  }
-  if (a <= c && c <= b) {
-    return true;
-  }
-  if (a <= d && d <= b) {
-    return true;
-  }
-  return false;*/
   let min=Math.max(a,c);
   let max=Math.min(b,d);
   return min<=max;

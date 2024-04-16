@@ -492,16 +492,10 @@ body {
   border: 0px solid;
   background-color: var(--color_background);
   border: 1px solid var(--elem-type);
+  color: var(--elem-type);
+  display: flex;
   overflow: hidden;
-}
-
-.elem-icon-image,
-.elem-icon-video,
-.elem-icon-audio,
-.elem-icon-text {
-	position: absolute;
-	top: 0;
-	left: 0;
+  text-overflow: ellipsis;
 }
 
 #selector-end {

@@ -43,6 +43,14 @@ gui = {
           "visible";
         document.getElementById("editor-back").style.visibility = "visible";
         document.getElementById("editor-subtitle").innerHTML = "add Element";
+      }else if (name=="elemEditor"){
+        document.getElementById("editor-menu-main").style.visibility = "hidden";
+        document.getElementById("editor-menu-sub").style.visibility = "visible";
+        document.getElementById("editor-menu-elemEditor").style.visibility =
+          "visible";
+        document.getElementById("editor-back").style.visibility = "visible";
+        document.getElementById("editor-subtitle").innerHTML = "edit Element";
+
       }
     },
   },

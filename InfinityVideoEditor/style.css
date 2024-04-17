@@ -377,19 +377,19 @@ body {
 .editor-addElem-button-text {
   top: 75%;
 }
-#editor-menus-elemEditor table{
+#editor-menu-elemEditor table{
   width:100%;
   height:100%;
   background-color: var(--color_background);
 }
-#editor-menus-elemEditor table th{
+#editor-menu-elemEditor table th{
   border: 2px solid var(--color_border);
   animation-name: rainbow, rainbowborder;
   animation-duration: 5s;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
 }
-#editor-menus-elemEditor table tr th input{
+#editor-menu-elemEditor table tr th input{
   width:100%;
   height:100%;
   border-radius: 0;

@@ -166,39 +166,27 @@
               text
             </button>
           </div>
-          <div class="editor-menus" id="editor-menus-elemEditor" style="visibility: visible;">
+          <div class="editor-menus" id="editor-menu-elemEditor">
             <table>
               <tr>
                 <th>name</th>
-                <th><input type="text" name="" id="" /></th>
+                <th><input type="text" id="elemEditor-name" onchange="project.elemEditor.renew('name')" /></th>
               </tr>
               <tr>
                 <th>start</th>
-                <th><input type="text" name="" id="" /></th>
+                <th><input type="text" id="elemEditor-start" onchange="project.elemEditor.renew('start')" /></th>
               </tr>
               <tr>
                 <th>length</th>
-                <th><input type="text" name="" id="" /></th>
+                <th><input type="text" id="elemEditor-length" onchange="project.elemEditor.renew('length')" /></th>
               </tr>
               <tr>
                 <th>layer</th>
-                <th><input type="text" name="" id="" /></th>
+                <th><input type="text" id="elemEditor-layer" onchange="project.elemEditor.renew('layer')" /></th>
               </tr>
               <tr>
-                <th>x</th>
-                <th><input type="text" name="" id="" /></th>
-              </tr>
-              <tr>
-                <th>y</th>
-                <th><input type="text" name="" id="" /></th>
-              </tr>
-              <tr>
-                <th>direction</th>
-                <th><input type="text" name="" id="" /></th>
-              </tr>
-              <tr>
-                <th>size</th>
-                <th><input type="text" name="" id="" /></th>
+                <th>animation</th>
+                <th><button>edit animation</button></th>
               </tr>
             </table>
           </div>

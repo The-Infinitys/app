@@ -84,12 +84,6 @@ project = {
     length: document.querySelector("#elemEditor-length"),
     layer: document.querySelector("#elemEditor-layer"),
     renew: (editor_name) => {
-      console.log(
-        project.elemEditor.name.value,
-        project.elemEditor.start.value,
-        project.elemEditor.length.value,
-        project.elemEditor.layer.value
-      );
       let element = project.elems[project.elem.getProjectElementIndex(project.elem.scope)];
       switch (editor_name) {
         case "name":

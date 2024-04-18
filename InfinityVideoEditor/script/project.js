@@ -55,8 +55,12 @@ class element {
     icon.style = "width:5vh;height:100%;left:0;";
     this.elem.innerHTML = icon.outerHTML + this.info.name;
     this.elem.onclick = () => {
-      project.elem.scope=this.info.name;
+      project.elem.scope = this.info.name;
       gui.editor.open("elemEditor");
+      project.elemEditor.name.value=project.elems[project.elem.getProjectElementIndex(project.elem.scope)].info.name;
+      project.elemEditor.start.value=project.elems[project.elem.getProjectElementIndex(project.elem.scope)].info.start;
+      project.elemEditor.length.value=project.elems[project.elem.getProjectElementIndex(project.elem.scope)].info.length;
+      project.elemEditor.layer.value=project.elems[project.elem.getProjectElementIndex(project.elem.scope)].info.layer;
     };
   }
 }
@@ -76,31 +80,34 @@ project = {
   },
   elemEditor: {
     name: document.querySelector("#elemEditor-name"),
-    start: document.querySelector("#elemEditor-name"),
-    length: document.querySelector("#elemEditor-name"),
-    layer: document.querySelector("#elemEditor-name"),
-    x: document.querySelector("#elemEditor-name"),
-    y: document.querySelector("#elemEditor-name"),
-    direction: document.querySelector("#elemEditor-name"),
-    size: document.querySelector("#elemEditor-name"),
+    start: document.querySelector("#elemEditor-start"),
+    length: document.querySelector("#elemEditor-length"),
+    layer: document.querySelector("#elemEditor-layer"),
     renew: (editor_name) => {
+      console.log(
+        project.elemEditor.name.value,
+        project.elemEditor.start.value,
+        project.elemEditor.length.value,
+        project.elemEditor.layer.value
+      );
+      let element = project.elems[project.elem.getProjectElementIndex(project.elem.scope)];
       switch (editor_name) {
         case "name":
-          project.getProjectElement(project.scope).info.name = project.elemEditor.name.value;
+          element.info.name = project.elemEditor.name.value;
           break;
         case "start":
-          project.getProjectElement(project.scope).info.start = project.elemEditor.start.value;
+          element.info.start = project.elemEditor.start.value;
           break;
         case "length":
-          project.getProjectElement(project.scope).info.length = project.elemEditor.length.value;
+          element.info.length = project.elemEditor.length.value;
           break;
         case "layer":
-          project.getProjectElement(project.scope).info.layer = project.elemEditor.layer.value;
+          element.info.layer = project.elemEditor.layer.value;
           break;
         default:
           break;
       }
-      project.elemEditor.elem.renewElem();
+      element.renewElem();
     },
   },
   elem: {
@@ -138,11 +145,10 @@ project = {
       return result;
     },
     scope: null,
-    getProjectElement: (name) => {
-      const elemIndex = project.elems.findIndex((e) => {
+    getProjectElementIndex: (name) => {
+      return project.elems.findIndex((e) => {
         return e.info.name == name;
       });
-      return project.elem[elemIndex];
     },
   },
 };

@@ -140,8 +140,3 @@ gui = {
 };
 gui.player.renew();
 gui.player.playing.play();
-
-//import file
-document.getElementById("file-dialog-source").addEventListener("click", (e) => {
-  console.log(e);
-});

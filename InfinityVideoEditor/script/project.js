@@ -147,3 +147,10 @@ project = {
     },
   },
 };
+
+
+//import file
+document.getElementById("file-dialog-source").addEventListener("change", (e) => {
+  const element=document.getElementById("file-dialog-source");
+  console.log(element.files.length);
+});

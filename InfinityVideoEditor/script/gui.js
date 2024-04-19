@@ -28,6 +28,7 @@ gui = {
         editorMenus[i].style.visibility = "hidden";
       }
       document.getElementById("editor-menu-main").style.visibility = "visible";
+      document.getElementById("editor-subtitle").innerHTML = "";
     },
     importFile: () => {
       document.getElementById("file-dialog-source").click();
@@ -36,21 +37,29 @@ gui = {
       document.getElementById("file-dialog-project").click();
     },
     open: (name) => {
+      if (document.getElementById("editor-subtitle").innerHTML != "") {
+        gui.editor.back();
+      }
+      document.getElementById("editor-menu-main").style.visibility = "hidden";
+      document.getElementById("editor-menu-sub").style.visibility = "visible";
+      document.getElementById("editor-back").style.visibility = "visible";
+      document.getElementById("editor-subtitle").style.visibility = "visible";
       if (name == "addElem") {
-        document.getElementById("editor-menu-main").style.visibility = "hidden";
-        document.getElementById("editor-menu-sub").style.visibility = "visible";
         document.getElementById("editor-menu-addElem").style.visibility =
           "visible";
-        document.getElementById("editor-back").style.visibility = "visible";
         document.getElementById("editor-subtitle").innerHTML = "add Element";
-      }else if (name=="elemEditor"){
-        document.getElementById("editor-menu-main").style.visibility = "hidden";
-        document.getElementById("editor-menu-sub").style.visibility = "visible";
+      } else if (name == "elemEditor") {
         document.getElementById("editor-menu-elemEditor").style.visibility =
           "visible";
-        document.getElementById("editor-back").style.visibility = "visible";
         document.getElementById("editor-subtitle").innerHTML = "edit Element";
-
+      } else if (name == "elemEditor-source") {
+        document.getElementById("editor-menu-elemEditor-source").style.visibility =
+          "visible";
+        document.getElementById("editor-subtitle").innerHTML = "edit source";
+      } else if (name == "elemEditor-anmation") {
+        document.getElementById("editor-menu-elemEditor-animation").style.visibility =
+          "visible";
+        document.getElementById("editor-subtitle").innerHTML = "edit anmation";
       }
     },
   },
@@ -131,3 +140,8 @@ gui = {
 };
 gui.player.renew();
 gui.player.playing.play();
+
+//import file
+document.getElementById("file-dialog-source").addEventListener("click", (e) => {
+  console.log(e);
+});

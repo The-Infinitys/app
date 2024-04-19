@@ -57,10 +57,11 @@ class element {
     this.elem.onclick = () => {
       project.elem.scope = this.info.name;
       gui.editor.open("elemEditor");
-      project.elemEditor.name.value=project.elems[project.elem.getProjectElementIndex(project.elem.scope)].info.name;
-      project.elemEditor.start.value=project.elems[project.elem.getProjectElementIndex(project.elem.scope)].info.start;
-      project.elemEditor.length.value=project.elems[project.elem.getProjectElementIndex(project.elem.scope)].info.length;
-      project.elemEditor.layer.value=project.elems[project.elem.getProjectElementIndex(project.elem.scope)].info.layer;
+      let elemindex=project.elem.getProjectElementIndex(project.elem.scope);
+      project.elemEditor.name.value=project.elems[elemindex].info.name;
+      project.elemEditor.start.value=project.elems[elemindex].info.start;
+      project.elemEditor.length.value=project.elems[elemindex].info.length;
+      project.elemEditor.layer.value=project.elems[elemindex].info.layer;
     };
   }
 }

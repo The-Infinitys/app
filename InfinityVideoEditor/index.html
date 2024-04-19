@@ -185,10 +185,21 @@
                 <th><input type="text" id="elemEditor-layer" onchange="project.elemEditor.renew('layer');" /></th>
               </tr>
               <tr>
+                <th>source</th>
+                <th><button onclick="gui.editor.open('elemEditor-source')">source setting</button>
+                </th>
+              </tr>
+              <tr>
                 <th>animation</th>
-                <th><button>edit animation</button></th>
+                <th><button onclick="gui.editor.open('elemEditor-animation')">edit animation</button></th>
               </tr>
             </table>
+          </div>
+          <div class="editor-menus" id="editor-menu-elemEditor-source">
+            source
+          </div>
+          <div class="editor-menus" id="editor-menu-elemEditor-animation">
+            animation
           </div>
         </div>
       </div>

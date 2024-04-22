@@ -39,6 +39,22 @@ class element {
         },
       },
     };
+    switch (type){
+      case "video":
+        this.info.video={source:null,start:0,speed:1};
+        break;
+      case "image":
+        this.info.image={source:null};
+        break;
+      case "audio":
+        this.info.audio={source:null,start:0,speed:1};
+        break;
+      case "text":
+        this.info.text={str_data:"",style:""};
+        break;
+      default:
+        break;
+    }
     let elem = document.createElement("buttom");
     elem.className = "elem_button";
     this.info.layer = project.elem.check_empty_layer_on(this.info.start, this.info.length) + 1;

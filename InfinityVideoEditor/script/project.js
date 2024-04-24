@@ -39,18 +39,18 @@ class element {
         },
       },
     };
-    switch (type){
+    switch (type) {
       case "video":
-        this.info.video={source:null,start:0,speed:1};
+        this.info.video = { source: null, start: 0, speed: 1 };
         break;
       case "image":
-        this.info.image={source:null};
+        this.info.image = { source: null };
         break;
       case "audio":
-        this.info.audio={source:null,start:0,speed:1};
+        this.info.audio = { source: null, start: 0, speed: 1 };
         break;
       case "text":
-        this.info.text={str_data:"",style:""};
+        this.info.text = { str_data: "", style: "" };
         break;
       default:
         break;
@@ -73,11 +73,11 @@ class element {
     this.elem.onclick = () => {
       project.elem.scope = this.info.name;
       gui.editor.open("elemEditor");
-      let elemindex=project.elem.getProjectElementIndex(project.elem.scope);
-      project.elemEditor.name.value=project.elems[elemindex].info.name;
-      project.elemEditor.start.value=project.elems[elemindex].info.start;
-      project.elemEditor.length.value=project.elems[elemindex].info.length;
-      project.elemEditor.layer.value=project.elems[elemindex].info.layer;
+      let elemindex = project.elem.getProjectElementIndex(project.elem.scope);
+      project.elemEditor.name.value = project.elems[elemindex].info.name;
+      project.elemEditor.start.value = project.elems[elemindex].info.start;
+      project.elemEditor.length.value = project.elems[elemindex].info.length;
+      project.elemEditor.layer.value = project.elems[elemindex].info.layer;
     };
   }
 }
@@ -167,6 +167,33 @@ project = {
 
 //import file
 document.getElementById("file-dialog-source").addEventListener("change", (e) => {
-  const element=document.getElementById("file-dialog-source");
+  const element = document.getElementById("file-dialog-source");
   console.log(element.files.length);
+  for (let i = 0; i < element.files.length; ++i) {
+    createElementSource(element.files[i]);
+  }
 });
+
+const createElementSource = file => {
+  let elem = document.createElement("div");
+  let source = null;
+  const reader=new FileReader();
+  if (file.type.startsWith("image")) {
+    elem.innerHTML = "<div>image<div>";
+    source = document.createElement("image");
+  } else if (file.type.startsWith("video")) {
+    elem.innerHTML = "<div>video<div>";
+    source = document.createElement("video");
+  } else {
+    elem.innerHTML = "<div>audio<div>";
+    source = document.createElement("audio");
+  }
+  elem.innerHTML+="<div>"+file.name+"</div>"
+  reader.onload = (e)=>{
+    source.src=e.target.result;
+    elem.appendChild(source);
+    document.querySelector("#Element-sources").appendChild(elem);
+    console.log("成功");
+  };
+  reader.readAsDataURL(file);
+}

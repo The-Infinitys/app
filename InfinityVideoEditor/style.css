@@ -377,21 +377,24 @@ body {
 .editor-addElem-button-text {
   top: 75%;
 }
-#editor-menu-elemEditor table{
-  width:100%;
-  height:100%;
+
+#editor-menu-elemEditor table {
+  width: 100%;
+  height: 100%;
   background-color: var(--color_background);
 }
-#editor-menu-elemEditor table th{
+
+#editor-menu-elemEditor table th {
   border: 2px solid var(--color_border);
   animation-name: rainbow, rainbowborder;
   animation-duration: 5s;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
 }
-#editor-menu-elemEditor table tr th input{
-  width:100%;
-  height:100%;
+
+#editor-menu-elemEditor table tr th input {
+  width: 100%;
+  height: 100%;
   border-radius: 0;
   background-color: var(--color_background);
   animation-name: rainbow;
@@ -399,13 +402,28 @@ body {
   animation-timing-function: linear;
   animation-iteration-count: infinite;
 }
-#editor-menu-elemEditor table tr th button{
-  width:100%;
-  height:100%;
+
+#editor-menu-elemEditor table tr th button {
+  width: 100%;
+  height: 100%;
   border: 0px;
-  font-size:3vw;
+  font-size: 3vw;
   background-color: var(--color_background);
   animation-name: rainbow;
+  animation-duration: 5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+#editor-menu-elemEditor-source select {
+  position: absolute;
+  width: 100%;
+  height:10%;
+  top:10%;
+  background-color: var(--color_background);
+  border: 2px solid var(--color_border);
+  border-radius: 10%;
+  animation-name: rainbow, rainbowborder;
   animation-duration: 5s;
   animation-timing-function: linear;
   animation-iteration-count: infinite;

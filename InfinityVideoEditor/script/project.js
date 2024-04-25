@@ -168,32 +168,7 @@ project = {
 //import file
 document.getElementById("file-dialog-source").addEventListener("change", (e) => {
   const element = document.getElementById("file-dialog-source");
-  console.log(element.files.length);
   for (let i = 0; i < element.files.length; ++i) {
     createElementSource(element.files[i]);
   }
 });
-
-const createElementSource = file => {
-  let elem = document.createElement("div");
-  let source = null;
-  const reader=new FileReader();
-  if (file.type.startsWith("image")) {
-    elem.innerHTML = "<div>image<div>";
-    source = document.createElement("image");
-  } else if (file.type.startsWith("video")) {
-    elem.innerHTML = "<div>video<div>";
-    source = document.createElement("video");
-  } else {
-    elem.innerHTML = "<div>audio<div>";
-    source = document.createElement("audio");
-  }
-  elem.innerHTML+="<div>"+file.name+"</div>"
-  reader.onload = (e)=>{
-    source.src=e.target.result;
-    elem.appendChild(source);
-    document.querySelector("#Element-sources").appendChild(elem);
-    console.log("成功");
-  };
-  reader.readAsDataURL(file);
-}

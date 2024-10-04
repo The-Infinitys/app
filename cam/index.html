@@ -72,8 +72,8 @@
           const constraints = {
             audio: false,
             video: {
-              width: window.innerWidth,
-              height: window.innerHeight,
+              width: window.innerWidth * window.devicePixelRatio,
+              height: window.innerHeight * window.devicePixelRatio,
               facingMode: { exact: "environment" }, // リアカメラを利用する場合
             },
           };

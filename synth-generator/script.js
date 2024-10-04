@@ -29,5 +29,29 @@ const overtone = () => {
         control.children[control.children.length - 2].remove();
       }
     });
+  const init_pulse = () => {
+    const canvas = document.querySelector(
+      "div.main>div.ui>div.overtone>div.control>div.manage>button.removediv.main>div.ui>div.overtone>canvas.display"
+    );
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  };
+  init_pulse();
+  const renew_pulse = () => {
+    const canvas = document.querySelector(
+      "div.main>div.ui>div.overtone>div.control>div.manage>button.removediv.main>div.ui>div.overtone>canvas.display"
+    );
+    const ctx = canvas.getContext("2d");
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.beginPath();
+    ctx.moveTo(0, canvas.height / 2);
+    for (let i = 0; i < canvas.width; i++) {
+      let value = 0;
+      ctx.lineTo(i, canvas.height * value);
+    }
+    ctx.stroke();
+    requestAnimationFrame(renew_pulse);
+  };
+  renew_pulse();
 };
 overtone();

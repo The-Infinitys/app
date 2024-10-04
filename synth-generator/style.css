@@ -39,7 +39,7 @@ div.main>div.ui>div.overtone>h1 {
 div.main>div.ui>div.overtone>div.control,
 div.main>div.ui>div.overtone>canvas.display {
   width: 50%;
-  height: calc(100% - 30px);
+  height: calc(100% - 40px);
 }
 
 div.main>div.ui>div.overtone>div.control {
@@ -67,4 +67,11 @@ div.main>div.ui>div.overtone>div.control>div.manage>button {
   color: var(--text-color);
   border: 1px solid var(--text-color);
   background-color: var(--back-color);
+}
+
+div.main>div.ui>div.overtone>canvas.display {
+  position:absolute;
+  bottom:0;
+  left:50%;
+  background-color:#f00;
 }

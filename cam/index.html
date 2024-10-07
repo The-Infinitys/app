@@ -66,8 +66,8 @@
           const img = document.querySelector("#photo");
           video.width=window.innerWidth;
           video.height=window.innerHeight;
-          canvas.width=window.innerWidth;
-          canvas.height=window.innerHeight;
+          canvas.width=window.innerWidth * window.devicePixelRatio;
+          canvas.height=window.innerHeight * window.devicePixelRatio;
           /** カメラ設定 */
           const constraints = {
             audio: false,

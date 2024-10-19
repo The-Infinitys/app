@@ -40,7 +40,7 @@
 .box {
   flex: 1;
   height: 80%;
-  scale: 1 0;
+  scale: 1 0.01;
   animation: 10s rainbow-animation linear infinite;
   margin-left: 1px;
   margin-right: 1px;

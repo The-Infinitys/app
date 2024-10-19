@@ -2,10 +2,40 @@ const audio = document.querySelector("#audio");
 const get_audio_url = () => {
   const default_audio =
     "https://develop.the-infinitys.f5.si/article-2024/09/through-infinity/Through-Infinity.mp3";
-  const param_audio = URLSearchParams(document.location.search).get("audio");
+  const param_audio = new URLSearchParams(document.location.search).get(
+    "audio"
+  );
   return param_audio == null ? default_audio : param_audio;
 };
 audio.src = get_audio_url();
+const add_bg = () => {
+  const get_image_url = () => {
+    const default_img =
+      "https://develop.the-infinitys.f5.si/image/The-Infinitys.webp";
+    const param_img = new URLSearchParams(document.location.search).get("img");
+    return param_img == null ? default_img : param_img;
+  };
+  const jacket = document.createElement("img");
+  jacket.src = get_image_url();
+  jacket.className = "jacket";
+  jacket.setAttribute("crossorigin", "anonymous");
+  document.body.prepend(jacket);
+  const bg = document.createElement("img");
+  bg.src = get_image_url();
+  bg.className = "bg";
+  bg.setAttribute("crossorigin", "anonymous");
+  document.body.prepend(bg);
+};
+add_bg();
+const set_title = () => {
+  const default_title = "Though Infinity (The Infinity's) ";
+  const param_title = new URLSearchParams(document.location.search).get(
+    "title"
+  );
+  document.querySelector("h1.music-title").innerHTML =
+    param_title == null ? default_title : param_title;
+};
+set_title();
 let already_inited = false;
 const containerElement = document.querySelector(".container");
 const FFT_SIZE = 64;
@@ -28,7 +58,7 @@ function init() {
   // フーリエ変換を行う分割数。2の乗数でなくてはならない
   nodeAnalyser.fftSize = FFT_SIZE;
   // 0～1の範囲でデータの動きの速さ 0だともっとも速く、1に近づくほど遅くなる
-  nodeAnalyser.smoothingTimeConstant = 0.5;
+  nodeAnalyser.smoothingTimeConstant = 0.8;
   // オーディオの出力先を設定
   nodeAnalyser.connect(context.destination);
   // audio 要素と紐付ける

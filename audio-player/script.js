@@ -4,7 +4,6 @@ const get_audio_url = () => {
     "https://the-infinitys.f5.si/article-2024/09/through-infinity/Through-Infinity.mp3";
   return default_audio;
 };
-console.log(audio.src);
 audio.src = get_audio_url();
 let FFT_SIZE = 64;
 const containerElement = document.querySelector(".container");
@@ -39,8 +38,7 @@ function init() {
       const freqSum = freqByteData[i];
       const scale = freqSum / 256;
       const div = boxes[i];
-      div.style.scale = `1 ${scale+0.1}`;
-      list.push(scale);
+      div.style.scale = `1 ${scale+0.01}`;
     }
   }
 }

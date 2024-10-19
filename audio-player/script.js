@@ -39,11 +39,15 @@ set_title();
 let already_inited = false;
 const containerElement = document.querySelector(".container");
 const FFT_SIZE = 64;
-for (let i = 0; i < FFT_SIZE / 2; i++) {
-  const div = document.createElement("div");
-  div.classList.add("box");
-  containerElement.append(div);
+function init_container() {
+  containerElement.innerHTML = "";
+  for (let i = 0; i < FFT_SIZE / 2; i++) {
+    const div = document.createElement("div");
+    div.classList.add("box");
+    containerElement.append(div);
+  }
 }
+// init_container();
 function init() {
   if (already_inited) {
     return;

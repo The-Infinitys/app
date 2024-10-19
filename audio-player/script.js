@@ -1,13 +1,12 @@
 const audio = document.querySelector("#audio");
 const get_audio_url = () => {
   const default_audio =
-    "https://the-infinitys.f5.si/article-2024/09/through-infinity/Through-Infinity.mp3";
+    "https://develop.the-infinitys.f5.si/article-2024/09/through-infinity/Through-Infinity.mp3";
   return default_audio;
 };
 audio.src = get_audio_url();
 let FFT_SIZE = 64;
 const containerElement = document.querySelector(".container");
-audioVisualData = [];
 function init() {
   const boxes = [];
   for (let i = 0; i < FFT_SIZE / 2; i++) {
@@ -27,11 +26,9 @@ function init() {
   // オーディオの出力先を設定
   nodeAnalyser.connect(context.destination);
   // audio 要素と紐付ける
-  const nodeSource = context.createMediaElementSource(audio);
-  nodeSource.connect(nodeAnalyser);
-  loop();
+  // const nodeSource = context.createMediaElementSource(audio);
+  // nodeSource.connect(nodeAnalyser);
   function loop() {
-    requestAnimationFrame(loop);
     const freqByteData = new Uint8Array(FFT_SIZE / 2);
     nodeAnalyser.getByteFrequencyData(freqByteData);
     for (let i = 0; i < freqByteData.length; i++) {
@@ -40,6 +37,8 @@ function init() {
       const div = boxes[i];
       div.style.scale = `1 ${scale+0.01}`;
     }
+    requestAnimationFrame(loop);
   }
+  loop();
 }
 init();

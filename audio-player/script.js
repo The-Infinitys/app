@@ -39,19 +39,17 @@ set_title();
 let already_inited = false;
 const containerElement = document.querySelector(".container");
 const FFT_SIZE = 64;
+for (let i = 0; i < FFT_SIZE / 2; i++) {
+  const div = document.createElement("div");
+  div.classList.add("box");
+  containerElement.append(div);
+}
 function init() {
   if (already_inited) {
     return;
   }
   already_inited = true;
-  const boxes = [];
-  for (let i = 0; i < FFT_SIZE / 2; i++) {
-    // FFT_SIZE / 2 は 64
-    const div = document.createElement("div");
-    div.classList.add("box");
-    containerElement.append(div);
-    boxes[i] = div;
-  }
+  const boxes = containerElement.children;
   const context = new AudioContext();
   // アナライザーを生成
   const nodeAnalyser = context.createAnalyser();

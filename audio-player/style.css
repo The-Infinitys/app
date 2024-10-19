@@ -8,12 +8,17 @@
   --jacket-size: min(90vw, 50vmax);
 }
 
-body {
+div.control {
+  width: 100%;
+  height: calc(100%-24px);
   display: flex;
   flex-direction: column;
 }
 
 #audio {
+  position: fixed;
+  bottom: 0;
+  left: 0;
   width: 100%;
   height: 24px;
 }
@@ -37,28 +42,33 @@ img.jacket {
 }
 
 h1.music-title {
-  width: min(auto, 100vw);
-  height: auto;
   color: #000;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   font-size: 24px;
-  background-color: #fff9;
-  border-radius: 10px;
   text-align: center;
   left: 50%;
   transform: translate(-50%, 0);
+  animation: scroll-text 15s infinite linear;
+}
+
+@keyframes scroll-text {
+  from {
+    left: -200%;
+  }
+
+  to {
+    left: 200%;
+  }
 }
 
 /* 親 */
 .container {
   width: 100%;
-  flex: auto;
+  height: calc(100vh - var(--jacket-size) - 64px);
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 1px;
-  position: relative;
-  background-image: none;
 }
 
 .container:after {
@@ -73,11 +83,9 @@ h1.music-title {
 
 .box {
   flex: 1;
-  height: 80%;
+  height: 95%;
   scale: 1 0.01;
   animation: 10s rainbow-animation linear infinite;
-  margin-left: 0.1px;
-  margin-right: 0.1px;
 }
 
 

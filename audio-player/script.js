@@ -1,3 +1,4 @@
+const controller =document.querySelector("div.control");
 const audio = document.querySelector("#audio");
 const get_audio_url = () => {
   const default_audio =
@@ -19,7 +20,7 @@ const add_bg = () => {
   jacket.src = get_image_url();
   jacket.className = "jacket";
   jacket.setAttribute("crossorigin", "anonymous");
-  document.body.prepend(jacket);
+  controller.prepend(jacket);
   const bg = document.createElement("img");
   bg.src = get_image_url();
   bg.className = "bg";
@@ -47,7 +48,7 @@ function init_container() {
     containerElement.append(div);
   }
 }
-// init_container();
+init_container();
 function init() {
   if (already_inited) {
     return;

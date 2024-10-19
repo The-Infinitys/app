@@ -1,8 +1,4 @@
-const audioFile = document.querySelector("#audioFile");
-const button = document.querySelector("#button");
 const audio = document.querySelector("#audio");
-const duration = document.querySelector("#duration");
-exportdata = [];
 //ファイルの読み込み
 audioFile.addEventListener("change", (e) => {
   const file = e.target.files[0];
